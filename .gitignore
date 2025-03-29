@@ -1,0 +1,30 @@
+# Python virtual environment
+venv/
+nba_env/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Data files
+data/raw/*.json
+data/processed/*.csv
+*.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Mac specific files
+.DS_Store
+
+# Environment variables
+.env
