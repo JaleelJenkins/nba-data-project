@@ -174,3 +174,35 @@ Here's a simple project structure to start with:
 	├── analysis/
 	│   └── basic_analysis.py # Simple analytics
 	└── main.py           # Pipeline orchestration
+
+Comprehensive Architecture
+The complete data warehouse architecture consists of:
+
+ETL Pipeline:
+	Extract data from NBA API
+	Transform into dimensional model
+	Load into SQLite database (can be upgraded to PostgreSQL for production)
+
+
+Warehouse Schema:
+	Dimension tables: teams, players, games, dates, venues
+	Fact tables: game stats, player stats, team stats
+
+
+Data Update Mechanism:
+	Regular scheduled updates
+	Historical data loading
+	Incremental refresh
+
+
+Analytics Layer:
+	Predefined analytical queries
+	Performance metrics
+	Trend analysis
+	Visualizations
+
+
+Dashboard/UI:
+	Jupyter notebook for visualization
+	Statistical comparisons
+	Performance charts
