@@ -1,0 +1,198 @@
+# etl/player_shot_tracking_etl.py
+
+import json
+import os
+import time
+from datetime import datetime
+
+from nba_api.stats.endpoints import shotchartdetail
+
+from config.etl_settings import get_logger, get_db_connection, RAW_DIR
+
+def extract_shot_data(player_id, game_id, team_id):
+    """Extract shot tracking data for a player in a game"""
+    logger = get_logger("player_shot_tracking_etl")
+    logger.info(f"Extracting shot data for player {player_id} in game {game_id}")
+    
+    try:
+        # Add a delay to avoid hitting API rate limits
+        time.sleep(1)
+        
+        # Get shot chart
+        shot_chart = shotchartdetail.ShotChartDetail(
+            team_id=team_id,
+            player_id=player_id,
+            game_id_nullable=game_id,
+            context_measure_simple='FGA'
+        )
+        shot_data = shot_chart.get_dict()
+        
+        # Save raw data
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        raw_file = os.path.join(RAW_DIR, f"shot_chart_{player_id}_{game_id}_{timestamp}.json")
+        with open(raw_file, 'w') as f:
+            json.dump(shot_data, f, indent=2)
+        logger.info(f"Raw shot data saved to {raw_file}")
+        
+        return shot_data
+    except Exception as e:
+        logger.error(f"Error extracting shot data for player {player_id} in game {game_id}: {e}")
+        raise
+
+def transform_shot_data(shot_data, player_id, game_id):
+    """Transform shot data"""
+    logger = get_logger("player_shot_tracking_etl")
+    logger.info(f"Transforming shot data for player {player_id} in game {game_id}")
+    
+    player_game_id = f"{game_id}_{player_id}"
+    shot_stats = {
+        'player_game_id': player_game_id,
+        'shots_made_0_3ft': 0,
+        'shots_attempted_0_3ft': 0,
+        'shots_pct_0_3ft': 0.0
+    }
+    
+    if 'resultSets' in shot_data and len(shot_data['resultSets']) > 0:
+        result_set = shot_data['resultSets'][0]
+        headers = result_set['headers']
+        rows = result_set['rowSet']
+        
+        if len(rows) > 0:
+            # Count shots by distance
+            shots_0_3ft_made = 0
+            shots_0_3ft_attempted = 0
+            
+            for row in rows:
+                shot_dict = dict(zip(headers, row))
+                shot_distance = shot_dict.get('SHOT_DISTANCE', 0)
+                shot_made = shot_dict.get('SHOT_MADE_FLAG', 0)
+                
+                # 0-3 feet
+                if shot_distance <= 3:
+                    shots_0_3ft_attempted += 1
+                    if shot_made == 1:
+                        shots_0_3ft_made += 1
+            
+            shot_stats['shots_made_0_3ft'] = shots_0_3ft_made
+            shot_stats['shots_attempted_0_3ft'] = shots_0_3ft_attempted
+            if shots_0_3ft_attempted > 0:
+                shot_stats['shots_pct_0_3ft'] = shots
+                shot_stats['shots_made_0_3ft'] = shots_0_3ft_made
+            shot_stats['shots_attempted_0_3ft'] = shots_0_3ft_attempted
+            if shots_0_3ft_attempted > 0:
+                shot_stats['shots_pct_0_3ft'] = shots_0_3ft_made / shots_0_3ft_attempted
+    
+    logger.info(f"Transformed shot data for player {player_id} in game {game_id}")
+    return shot_stats
+
+def load_shot_data(shot_stats):
+    """Load shot tracking data into the database"""
+    logger = get_logger("player_shot_tracking_etl")
+    logger.info(f"Loading shot data for player game ID {shot_stats['player_game_id']}")
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    try:
+        cursor.execute('''
+        INSERT OR REPLACE INTO fact_player_shot_tracking (
+            player_game_id, shots_made_0_3ft, shots_attempted_0_3ft, shots_pct_0_3ft, inserted_at
+        ) VALUES (?, ?, ?, ?, ?)
+        ''', (
+            shot_stats['player_game_id'],
+            shot_stats['shots_made_0_3ft'],
+            shot_stats['shots_attempted_0_3ft'],
+            shot_stats['shots_pct_0_3ft'],
+            now
+        ))
+        
+        conn.commit()
+        logger.info(f"Loaded shot tracking data for player game ID {shot_stats['player_game_id']}")
+        return True
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"Error loading shot tracking data: {e}")
+        raise
+    finally:
+        conn.close()
+
+def get_player_games_without_shot_data(limit=5):
+    """Get player games that need shot tracking data"""
+    logger = get_logger("player_shot_tracking_etl")
+    logger.info("Finding player games without shot tracking data")
+    
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    try:
+        cursor.execute('''
+        SELECT pgs.player_game_id, pgs.player_id, pgs.game_id, pgs.team_id
+        FROM fact_player_game_stats pgs
+        LEFT JOIN fact_player_shot_tracking pst ON pgs.player_game_id = pst.player_game_id
+        WHERE pst.player_game_id IS NULL
+        LIMIT ?
+        ''', (limit,))
+        
+        player_games = []
+        for row in cursor.fetchall():
+            player_games.append({
+                'player_game_id': row['player_game_id'],
+                'player_id': row['player_id'],
+                'game_id': row['game_id'],
+                'team_id': row['team_id']
+            })
+        
+        logger.info(f"Found {len(player_games)} player games without shot tracking data")
+        return player_games
+    except Exception as e:
+        logger.error(f"Error finding player games without shot tracking data: {e}")
+        return []
+    finally:
+        conn.close()
+
+def player_shot_tracking_etl(limit=5):
+    """Run the full player shot tracking ETL process"""
+    logger = get_logger("player_shot_tracking_etl")
+    logger.info("Starting player shot tracking ETL process")
+    
+    try:
+        # Get player games that need shot tracking data
+        player_games = get_player_games_without_shot_data(limit)
+        
+        if not player_games:
+            logger.info("No player games to process")
+            return True
+        
+        shots_loaded = 0
+        
+        # Process each player game
+        for pg in player_games:
+            try:
+                # Extract
+                shot_data = extract_shot_data(pg['player_id'], pg['game_id'], pg['team_id'])
+                
+                # Transform
+                shot_stats = transform_shot_data(shot_data, pg['player_id'], pg['game_id'])
+                
+                # Load
+                load_shot_data(shot_stats)
+                
+                shots_loaded += 1
+                
+                # Small delay between API calls
+                time.sleep(1)
+            except Exception as e:
+                logger.error(f"Error processing player game {pg['player_game_id']}: {e}")
+                continue
+        
+        logger.info(f"Player shot tracking ETL process completed successfully with {shots_loaded} records loaded")
+        return True
+    except Exception as e:
+        logger.error(f"Player shot tracking ETL process failed: {e}")
+        return False
+
+if __name__ == "__main__":
+    # Process player shot tracking data
+    player_shot_tracking_etl(limit=5)
