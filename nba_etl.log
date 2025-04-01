@@ -1,0 +1,145 @@
+2025-03-31 22:54:33,847 - NBA-ETL - INFO - Starting NBA data warehouse ETL job
+2025-03-31 22:54:33,848 - NBA-ETL - INFO - Connected to database
+2025-03-31 22:54:33,849 - NBA-ETL - INFO - All required tables already exist
+2025-03-31 22:54:33,849 - NBA-ETL - INFO - Loading teams data...
+2025-03-31 22:54:33,849 - NBA-ETL - INFO - Raw data saved to data/raw/teams_20250331_225433.json
+2025-03-31 22:54:33,850 - NBA-ETL - INFO - Teams loaded: 0 added, 30 updated
+2025-03-31 22:54:33,850 - NBA-ETL - INFO - Loading players data...
+2025-03-31 22:54:33,851 - NBA-ETL - INFO - Raw data saved to data/raw/active_players_20250331_225433.json
+2025-03-31 22:54:33,853 - NBA-ETL - INFO - Players loaded: 530 added, 35 updated
+2025-03-31 22:54:33,853 - NBA-ETL - INFO - Loading games data for the last 3 days...
+2025-03-31 22:54:33,853 - NBA-ETL - INFO - Fetching games from 03/28/2025 to today...
+2025-03-31 22:54:34,450 - NBA-ETL - INFO - Raw data saved to data/raw/recent_games_20250331_225434.json
+2025-03-31 22:54:34,455 - NBA-ETL - INFO - Added date 2025-03-28 to dim_dates
+2025-03-31 22:54:34,458 - NBA-ETL - INFO - Added date 2025-03-29 to dim_dates
+2025-03-31 22:54:34,460 - NBA-ETL - INFO - Added date 2025-03-30 to dim_dates
+2025-03-31 22:54:34,462 - NBA-ETL - INFO - Added date 2025-03-31 to dim_dates
+2025-03-31 22:54:34,464 - NBA-ETL - INFO - Games loaded: 15 added, 15 updated
+2025-03-31 22:54:34,464 - NBA-ETL - INFO - Game stats loaded: 15 added, 15 updated
+2025-03-31 22:54:34,466 - NBA-ETL - INFO - Loading player stats for 5 games...
+2025-03-31 22:54:34,466 - NBA-ETL - INFO - Processing player stats for game 0022401067...
+2025-03-31 22:54:34,588 - NBA-ETL - INFO - Raw data saved to data/raw/boxscore_0022401067_20250331_225434.json
+2025-03-31 22:54:37,422 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630171: 'STL_PCT'
+2025-03-31 22:54:39,500 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630596: 'STL_PCT'
+2025-03-31 22:54:40,354 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1628386: 'STL_PCT'
+2025-03-31 22:54:41,580 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1628378: 'STL_PCT'
+2025-03-31 22:54:42,251 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1629636: 'STL_PCT'
+2025-03-31 22:54:43,006 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630241: 'STL_PCT'
+2025-03-31 22:54:43,866 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1629631: 'STL_PCT'
+2025-03-31 22:54:44,587 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1629731: 'STL_PCT'
+2025-03-31 22:55:14,618 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1629750: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 22:55:14,854 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1629750: 'STL_PCT'
+2025-03-31 22:55:15,990 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1641854: 'STL_PCT'
+2025-03-31 22:55:16,597 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_202684: 'STL_PCT'
+2025-03-31 22:55:17,204 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_203501: 'STL_PCT'
+2025-03-31 22:55:18,036 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1641709: 'STL_PCT'
+2025-03-31 22:55:47,138 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1631105: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:56:05,253 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1631105: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:56:35,301 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1627736: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 22:56:53,425 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1627736: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:57:11,529 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1627736: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:57:41,572 - NBA-ETL - ERROR - Error processing shot data for 0022401067_203471: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 22:57:59,696 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_203471: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:58:17,808 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_203471: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:58:47,862 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1631204: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 22:59:05,990 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1631204: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 22:59:35,085 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1631204: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:00:05,131 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1631323: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:00:33,888 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1631323: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:01:03,936 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1631323: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:01:33,980 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1630191: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:01:52,103 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630191: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:02:10,218 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1630191: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:02:40,274 - NBA-ETL - ERROR - Error processing shot data for 0022401067_1641842: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:03:10,321 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1641842: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:03:28,434 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1641842: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:03:58,484 - NBA-ETL - ERROR - Error processing shot data for 0022401067_202699: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:04:16,616 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_202699: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:04:46,679 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_202699: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:04:47,629 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1642450: 'STL_PCT'
+2025-03-31 23:04:48,425 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1641752: 'STL_PCT'
+2025-03-31 23:04:50,014 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630194: 'STL_PCT'
+2025-03-31 23:04:50,565 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1630322: 'STL_PCT'
+2025-03-31 23:04:51,596 - NBA-ETL - INFO - Processing player stats for game 0022401068...
+2025-03-31 23:05:12,260 - NBA-ETL - ERROR - Error processing player stats for game 0022401068: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:05:12,261 - NBA-ETL - INFO - Processing player stats for game 0022401069...
+2025-03-31 23:05:42,321 - NBA-ETL - ERROR - Error processing player stats for game 0022401069: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:05:42,322 - NBA-ETL - INFO - Processing player stats for game 0022401070...
+2025-03-31 23:05:42,511 - NBA-ETL - INFO - Raw data saved to data/raw/boxscore_0022401070_20250331_230542.json
+2025-03-31 23:05:44,371 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1628404: 'STL_PCT'
+2025-03-31 23:05:46,418 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1628384: 'STL_PCT'
+2025-03-31 23:05:47,304 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1626157: 'STL_PCT'
+2025-03-31 23:05:47,920 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1628969: 'STL_PCT'
+2025-03-31 23:05:48,770 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1626153: 'STL_PCT'
+2025-03-31 23:06:18,806 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1629011: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:06:19,089 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1629011: 'STL_PCT'
+2025-03-31 23:06:19,787 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1629013: 'STL_PCT'
+2025-03-31 23:06:20,860 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1642278: 'STL_PCT'
+2025-03-31 23:06:21,793 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1630173: 'STL_PCT'
+2025-03-31 23:06:22,386 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1630699: 'STL_PCT'
+2025-03-31 23:06:23,166 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_200782: 'STL_PCT'
+2025-03-31 23:06:53,211 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1641817: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:07:11,326 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1641817: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:07:29,424 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1641817: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:07:59,472 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1628398: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:08:17,603 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1628398: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:08:18,228 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_203507: 'STL_PCT'
+2025-03-31 23:08:18,964 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_201572: 'STL_PCT'
+2025-03-31 23:08:19,492 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1627752: 'STL_PCT'
+2025-03-31 23:08:43,666 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1631157: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:09:01,790 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1631157: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:09:31,829 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1629018: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:09:49,949 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1629018: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:10:08,065 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1629018: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:10:38,116 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1629645: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:11:01,683 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1629645: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:11:19,780 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1629645: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:11:49,824 - NBA-ETL - ERROR - Error processing shot data for 0022401070_1631260: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:12:07,965 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1631260: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:12:26,072 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1631260: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:12:27,182 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1641890: 'STL_PCT'
+2025-03-31 23:12:28,003 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1641748: 'STL_PCT'
+2025-03-31 23:12:28,853 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1631123: 'STL_PCT'
+2025-03-31 23:12:29,743 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1626192: 'STL_PCT'
+2025-03-31 23:12:55,193 - NBA-ETL - ERROR - Error processing advanced stats for 0022401070_1641753: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:13:13,323 - NBA-ETL - ERROR - Error processing hustle stats for 0022401070_1641753: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:13:14,328 - NBA-ETL - INFO - Processing player stats for game 0022401071...
+2025-03-31 23:13:44,365 - NBA-ETL - ERROR - Error processing player stats for game 0022401071: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:13:44,367 - NBA-ETL - INFO - Player stats processed: 50 player game stats records added/updated
+2025-03-31 23:13:44,367 - NBA-ETL - INFO - Additional players added: 1
+2025-03-31 23:13:44,368 - NBA-ETL - INFO - Database connection closed
+2025-03-31 23:13:44,368 - NBA-ETL - INFO - NBA data warehouse ETL job completed
+2025-03-31 23:34:10,511 - NBA-ETL - INFO - Starting NBA data warehouse ETL job
+2025-03-31 23:34:10,512 - NBA-ETL - INFO - Connected to database
+2025-03-31 23:34:10,514 - NBA-ETL - INFO - All required tables already exist
+2025-03-31 23:34:10,514 - NBA-ETL - INFO - Loading teams data...
+2025-03-31 23:34:10,514 - NBA-ETL - INFO - Raw data saved to data/raw/teams_20250331_233410.json
+2025-03-31 23:34:10,514 - NBA-ETL - INFO - Teams loaded: 0 added, 30 updated
+2025-03-31 23:34:10,514 - NBA-ETL - INFO - Loading players data...
+2025-03-31 23:34:10,516 - NBA-ETL - INFO - Raw data saved to data/raw/active_players_20250331_233410.json
+2025-03-31 23:34:10,518 - NBA-ETL - INFO - Players loaded: 0 added, 565 updated
+2025-03-31 23:34:10,518 - NBA-ETL - INFO - Loading games data for the last 3 days...
+2025-03-31 23:34:10,518 - NBA-ETL - INFO - Fetching games from 03/28/2025 to today...
+2025-03-31 23:34:10,728 - NBA-ETL - INFO - Raw data saved to data/raw/recent_games_20250331_233410.json
+2025-03-31 23:34:10,744 - NBA-ETL - INFO - Games loaded: 0 added, 30 updated
+2025-03-31 23:34:10,744 - NBA-ETL - INFO - Game stats loaded: 0 added, 30 updated
+2025-03-31 23:34:10,745 - NBA-ETL - INFO - Loading player stats for 5 games...
+2025-03-31 23:34:10,745 - NBA-ETL - INFO - Processing player stats for game 0022401067...
+2025-03-31 23:34:10,948 - NBA-ETL - INFO - Raw data saved to data/raw/boxscore_0022401067_20250331_233410.json
+2025-03-31 23:34:53,361 - NBA-ETL - ERROR - Error processing advanced stats for 0022401067_1629750: HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=30)
+2025-03-31 23:35:11,482 - NBA-ETL - ERROR - Error processing hustle stats for 0022401067_1629750: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:35:38,589 - NBA-ETL - INFO - Completed processing for game 0022401067. Waiting before next game...
+2025-03-31 23:35:53,591 - NBA-ETL - INFO - Processing player stats for game 0022401068...
+2025-03-31 23:35:53,753 - NBA-ETL - INFO - Raw data saved to data/raw/boxscore_0022401068_20250331_233553.json
+2025-03-31 23:53:58,783 - NBA-ETL - ERROR - Error processing advanced stats for 0022401068_1641787: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-03-31 23:54:04,964 - NBA-ETL - INFO - Completed processing for game 0022401068. Waiting before next game...
+2025-04-01 00:42:51,250 - NBA-ETL - INFO - Processing player stats for game 0022401069...
+2025-04-01 01:00:21,438 - NBA-ETL - ERROR - Error processing player stats for game 0022401069: HTTPSConnectionPool(host='stats.nba.com', port=443): Max retries exceeded with url: /stats/boxscoretraditionalv2?EndPeriod=0&EndRange=0&GameID=0022401069&RangeType=0&StartPeriod=0&StartRange=0 (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x10738b250>, 'Connection to stats.nba.com timed out. (connect timeout=30)'))
+2025-04-01 01:00:21,438 - NBA-ETL - INFO - Processing player stats for game 0022401070...
+2025-04-01 01:31:45,206 - NBA-ETL - ERROR - Error processing player stats for game 0022401070: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2025-04-01 01:31:45,206 - NBA-ETL - INFO - Processing player stats for game 0022401071...
+2025-04-01 01:37:43,936 - NBA-ETL - ERROR - Error processing player stats for game 0022401071: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2025-04-01 01:37:43,940 - NBA-ETL - INFO - Player stats processed: 52 player game stats records added/updated
+2025-04-01 01:37:43,940 - NBA-ETL - INFO - Additional players added: 1
+2025-04-01 01:37:43,941 - NBA-ETL - INFO - Database connection closed
+2025-04-01 01:37:43,941 - NBA-ETL - INFO - NBA data warehouse ETL job completed
