@@ -1,0 +1,23 @@
+2025-04-01 05:08:53,474 - scheduler - INFO - Starting ETL scheduler
+2025-04-01 05:08:53,475 - scheduler - INFO - Running initial ETL jobs
+2025-04-01 05:08:53,475 - scheduler - INFO - Running all ETL jobs
+2025-04-01 05:08:53,475 - scheduler - INFO - Running scheduled teams ETL job
+2025-04-01 05:08:53,475 - scheduler - INFO - Teams ETL completed
+2025-04-01 05:08:53,475 - scheduler - INFO - Running scheduled players ETL job
+2025-04-01 05:08:53,475 - scheduler - INFO - Players ETL completed
+2025-04-01 05:08:53,475 - scheduler - INFO - Running scheduled games ETL job
+2025-04-01 05:08:53,475 - scheduler - INFO - Games ETL completed
+2025-04-01 05:08:53,475 - scheduler - INFO - Running scheduled player game stats ETL job
+2025-04-01 05:08:53,475 - scheduler - INFO - Player game stats ETL completed
+2025-04-01 05:08:53,475 - scheduler - INFO - All ETL jobs completed
+2025-04-01 05:08:53,475 - scheduler - INFO - Schedule:
+2025-04-01 05:08:53,475 - scheduler - INFO -   - Job(interval=1, unit=weeks, do=run_teams_etl, args=(), kwargs={})
+2025-04-01 05:08:53,475 - scheduler - INFO -   - Job(interval=1, unit=weeks, do=run_players_etl, args=(), kwargs={})
+2025-04-01 05:08:53,475 - scheduler - INFO -   - Job(interval=1, unit=days, do=run_games_etl, args=(), kwargs={})
+2025-04-01 05:08:53,475 - scheduler - INFO -   - Job(interval=1, unit=days, do=run_player_game_stats_etl, args=(), kwargs={})
+2025-04-01 05:08:53,475 - scheduler - INFO -   - Job(interval=1, unit=weeks, do=run_all_etl, args=(), kwargs={})
+2025-04-01 05:08:53,475 - scheduler - INFO - Scheduler running, press Ctrl+C to exit
+2025-04-01 06:39:31,326 - scheduler - INFO - Running scheduled games ETL job
+2025-04-01 06:39:31,328 - scheduler - INFO - Games ETL completed
+2025-04-01 07:01:48,682 - scheduler - INFO - Running scheduled player game stats ETL job
+2025-04-01 07:01:48,683 - scheduler - INFO - Player game stats ETL completed

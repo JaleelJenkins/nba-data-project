@@ -1,5 +1,4 @@
 # etl/player_shot_tracking_etl.py
-
 import json
 import os
 import time
